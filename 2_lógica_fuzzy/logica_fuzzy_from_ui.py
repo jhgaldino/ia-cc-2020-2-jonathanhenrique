@@ -1,10 +1,7 @@
-import sys, resource
-from PySide2 import QtCore
-from PySide2.QtUiTools import QUiLoader
-from PySide2.QtWidgets import QApplication, QLabel, \
-    QPushButton, QSpinBox, QAction
-from PySide2.QtCore import QFile
-
+import sys
+from PyQt5 import QtCore, uic
+from PyQt5.QtWidgets import QApplication, QLabel, QAction, QSpinBox, QPushButton
+#definindo a quantidade de dinheiro
 def dinheiro_pouco():
     dinheiro = dinheiro_sb.value()
     if dinheiro <= 30:
@@ -23,7 +20,6 @@ def dinheiro_razoavel():
         return (70 - dinheiro) / 20
     if dinheiro >= 70:
         return 0
-
 def dinheiro_adquado():
     dinheiro = dinheiro_sb.value()
     if dinheiro <= 50:
@@ -32,7 +28,7 @@ def dinheiro_adquado():
         return (dinheiro - 50) / 20
     if dinheiro >= 70:
         return 1
-
+#definido a quantidade de pessoas
 def pessoal_insuficiente():
     pessoa = pessoas_sb.value()
     if pessoa <= 30:
@@ -49,9 +45,8 @@ def pessoal_satisfatorio():
         return 1
     if pessoa > 30 and pessoa < 70:
         return (pessoa - 30) / 40
-
+#definição de regras
 def regras(vet):# RISCOS
-
     if(dinheiro_pouco() > pessoal_insuficiente()):
         alto = dinheiro_pouco()
     else:
@@ -75,7 +70,7 @@ def regras(vet):# RISCOS
         vet[0] = dinheiro_adquado()
     else:
         vet[0] = pessoal_satisfatorio()
-
+#riscos
 def risco(valor):
     if valor >= 0 or valor < 50:
         return 'Baixo'
@@ -102,18 +97,10 @@ def on_calcular_pushbutton_clicked():
         calc = 0
 
     risco_label2.setText(risco(calc)+': '+(str(calc)))
-
-
 if __name__ == "__main__":
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
     app = QApplication(sys.argv)
-
-    ui_file = QFile("logica_fuzzy.ui")
-    ui_file.open(QFile.ReadOnly)
-    loader = QUiLoader()
-    window = loader.load(ui_file)
-    ui_file.close()
-
+    window = uic.loadUi("logica_fuzzy.ui")
     dinheiro_label = window.findChild(QLabel, 'dinheiroLabel')
     dinheiro_label.setVisible(True)
 
