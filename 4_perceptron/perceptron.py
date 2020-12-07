@@ -1,18 +1,14 @@
 class Perceptron:
-
     def __init__(self):
         pass
-
     def __init__(self, entradas_p, alpha_p, theta_p):
         self.conjunto_treinamento = entradas_p
         self.alpha = alpha_p
         self.theta = theta_p
-
     def passo_zero(self):
         self.pesos = []
         for i in range(len(self.conjunto_treinamento[0][0])):
             self.pesos.append(0)
-
     def passo_n(self):
         print("\t\t\t\tPerceptron\n")
         print("Entradas\t\t\tSaida\t\tPesos\n")
@@ -37,9 +33,6 @@ class Perceptron:
             if (p_old == self.pesos and epoca != 1):
                 break
         print("Epocas:",epoca)
-
-
-
     def f_saida(self, saida_y, theta):
         if (saida_y > theta):
             return 1
@@ -47,7 +40,6 @@ class Perceptron:
             return 0
         elif (saida_y < -theta):
             return -1
-
 if __name__ == "__main__":
     #([1, 1, 1], 1) -> ([x1 , x2, b]. saida)
     perceptron = Perceptron([([1, 1, 1], 1),
