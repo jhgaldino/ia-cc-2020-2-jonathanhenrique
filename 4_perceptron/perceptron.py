@@ -10,7 +10,7 @@ class Perceptron:
         for i in range(len(self.conjunto_treinamento[0][0])):
             self.pesos.append(0)
     def passo_n(self):
-        print("\t\t\t\tPerceptron\n")
+        print("\t\t\t\tAplicação do Perceptron\n")
         print("Entradas\t\t\tSaida\t\tPesos\n")
         epoca = 0
         while (True):
@@ -18,11 +18,11 @@ class Perceptron:
                 entrada = list(ct[0])
                 saida = ct[1]
                 saida_y = 0
-                # print(entrada, saida, saida_y)
+                #entrada, saida, saida_y)
                 for j in range(len(self.pesos)):
                     saida_y += entrada[j] * self.pesos[j]
                 saida_y = self.f_saida(saida_y, self.theta)
-                # print(saida_y)
+                #saida_y
                 p_old = list(self.pesos)
                 if(saida_y != saida):
                     for i in range(len(self.pesos)):
@@ -45,6 +45,6 @@ if __name__ == "__main__":
     perceptron = Perceptron([([1, 1, 1], 1),
                 ([1, -1, 1], -1),
                 ([-1, 1, 1], -1),
-                ([-1, -1, 1], -1)], 1, 0)
+                ([-1, -1, 1], -1)], -1, 0)
     perceptron.passo_zero()
     perceptron.passo_n()

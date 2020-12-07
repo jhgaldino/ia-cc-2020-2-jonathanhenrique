@@ -8,7 +8,7 @@ class Hebb:
         for i in range(len(self.conjunto_treinamento[0][0])):
             self.pesos.append(0)
     def passo_n(self):
-        print("\t\t\t\tRegra de Hebb\n")
+        print("\t\t\t\tAplicação da Regra de Hebb\n")
         print("Entradas\t\t\tSaida\t\tPesos\n")
         for ct in self.conjunto_treinamento:
             entrada = list(ct[0])
