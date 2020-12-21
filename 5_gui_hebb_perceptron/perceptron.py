@@ -14,21 +14,21 @@ class Perceptron:
         epoca = 0
         while (True):
             for ct in self.trainning:
-                entrada = list(ct[0])
-                saida = ct[1]
+                inp = list(ct[0])
+                out = ct[1]
                 output = 0
                 for j in range(len(self.weights)):
-                    output += entrada[j] * self.weights[j]
-                output = self.f_saida(output, self.teta)
+                    output += inp[j] * self.weights[j]
+                output = self.u_out(output, self.teta)
                 p_old = list(self.weights)
-                if(output != saida):
+                if(output != out):
                     for i in range(len(self.weights)):
-                        self.weights[i] = self.weights[i] + entrada[i] * self.alfa * saida
+                        self.weights[i] = self.weights[i] + inp[i] * self.alfa * out
             epoca += 1
             if (p_old == self.weights and epoca != 1):
                 break
         return self.weights
-    def f_saida(self, output, teta):
+    def u_out(self, output, teta):
         if (output > teta):
             return 1
         elif (output > -teta and output < teta):

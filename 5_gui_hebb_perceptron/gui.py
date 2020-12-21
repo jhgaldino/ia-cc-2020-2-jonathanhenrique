@@ -7,7 +7,6 @@ from hebb import Hebb
 from perceptron import Perceptron
 from neuron import Neuron
 n = Neuron()
-
 def hebb_split(txt):
     split_1 = txt.split("\n")
     split_2 = []
@@ -50,7 +49,7 @@ def perceptron_setweights():
     p1_label.setText("{: .2f}".format(list_weight[0]))
     p2_label.setText("{: .2f}".format(list_weight[1]))
     pB_label.setText("{: .2f}".format(list_weight[2]))
-def on_treinar_pushbutton_clicked():
+def on_train_pushbutton_clicked():
     if tranning_plainText.toPlainText() == "":
         QMessageBox.warning(QMessageBox(), "ERRO", "Entre com uma entrada")
         return
@@ -63,7 +62,7 @@ def on_treinar_pushbutton_clicked():
         return
     test_lineEdit.setFocus()
     return 1
-def on_testar_pushbutton_clicked():
+def on_test_pushbutton_clicked():
     if p1_label.text() == "":
         QMessageBox.warning(QMessageBox(), "ERRO", "Faca treinamento")
         test_lineEdit.clear()
@@ -74,10 +73,10 @@ def on_testar_pushbutton_clicked():
         test_lineEdit.setFocus()
         return
     if hebb_radio.isChecked():
-        resposta_label.setText(str(n.h_saida([float(x) for x in test_lineEdit.text().split()])))
+        res_label.setText(str(n.h_output([float(x) for x in test_lineEdit.text().split()])))
         return
     elif perceptron_radio.isChecked():
-        resposta_label.setText(str(n.p_saida([float(x) for x in test_lineEdit.text().split()], n.entradas[2])))
+        res_label.setText(str(n.p_output([float(x) for x in test_lineEdit.text().split()], n.values[2])))
         return
     return
 if __name__ == "__main__":
@@ -92,20 +91,20 @@ if __name__ == "__main__":
     perceptron_radio = window.findChild(QRadioButton, 'perceptronRadioButton')
     tranning_label = window.findChild(QLabel, 'trainLabel')
     test_label = window.findChild(QLabel, 'testLabel')
-    pesos_label = window.findChild(QLabel, 'testLabel_2')
+    weights_label = window.findChild(QLabel, 'testLabel_2')
     saida_label = window.findChild(QLabel, 'saidaLabel')
-    peso1_label = window.findChild(QLabel, 'weight1Label')
-    peso2_label = window.findChild(QLabel, 'weight2Label')
-    pesoB_label = window.findChild(QLabel, 'weightBLabel')
+    weight1_label = window.findChild(QLabel, 'weight1Label')
+    weight2_label = window.findChild(QLabel, 'weight2Label')
+    weightB_label = window.findChild(QLabel, 'weightBLabel')
     p1_label = window.findChild(QLabel, 'p1Label')
     p2_label = window.findChild(QLabel, 'p2Label')
     pB_label = window.findChild(QLabel, 'pBLabel')
-    resposta_label = window.findChild(QLabel, 'resLabel')
+    res_label = window.findChild(QLabel, 'resLabel')
     tranning_plainText = window.findChild(QPlainTextEdit, 'trainPlainTextEdit')
     test_lineEdit = window.findChild(QLineEdit, 'testLineEdit')
-    treinar_btn = window.findChild(QPushButton, 'trainPushButton')
-    treinar_btn.clicked.connect(on_treinar_pushbutton_clicked)
-    testar_btn = window.findChild(QPushButton, 'testPushButton')
-    testar_btn.clicked.connect(on_testar_pushbutton_clicked)
+    train_btn = window.findChild(QPushButton, 'trainPushButton')
+    train_btn.clicked.connect(on_train_pushbutton_clicked)
+    test_btn = window.findChild(QPushButton, 'testPushButton')
+    test_btn.clicked.connect(on_test_pushbutton_clicked)
     window.show()
     sys.exit(app.exec_())
