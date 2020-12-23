@@ -128,7 +128,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>vai</string>
+     <string>Executar</string>
     </property>
    </widget>
    <widget class="QPushButton" name="testPushButton">
@@ -141,7 +141,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>vai2</string>
+     <string>Executar 2</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="hebbRadioButton">
