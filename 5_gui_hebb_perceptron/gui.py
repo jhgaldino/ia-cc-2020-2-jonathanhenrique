@@ -1,8 +1,6 @@
 import sys
-from PyQt5 import QtCore
-from PyQt5.QtUiTools import QUiLoader
+from PyQt5 import QtCore,uic
 from PyQt5.QtWidgets import QApplication, QLabel, QPushButton, QLineEdit, QRadioButton, QPlainTextEdit, QMessageBox
-from PyQt5.QtCore import QFile
 from hebb import Hebb
 from perceptron import Perceptron
 from neuron import Neuron
@@ -82,11 +80,7 @@ def on_test_pushbutton_clicked():
 if __name__ == "__main__":
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
     app = QApplication(sys.argv)
-    ui_file = QFile("hebb_perceptron.ui")
-    ui_file.open(QFile.ReadOnly)
-    loader = QUiLoader()
-    window = loader.load(ui_file)
-    ui_file.close()
+    window = uic.loadUi(f"5_gui_hebb_perceptron\hebb_perceptron.ui")
     hebb_radio = window.findChild(QRadioButton, 'hebbRadioButton')
     perceptron_radio = window.findChild(QRadioButton, 'perceptronRadioButton')
     tranning_label = window.findChild(QLabel, 'trainLabel')
