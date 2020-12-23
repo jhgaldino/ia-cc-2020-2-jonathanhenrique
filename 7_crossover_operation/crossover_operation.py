@@ -1,6 +1,5 @@
 import sys, random
 from PyQt5 import QtCore,uic
-from PyQt5.QtCore import QFile
 from PyQt5.QtWidgets import QApplication, QComboBox,QPushButton, QLineEdit, QLabel, QMessageBox
 
 def a(str_n, b, ha):
@@ -38,17 +37,17 @@ def on_cross_pushbutton_clicked():
         QMessageBox.warning(QMessageBox(), "AVISO", "Entrada deve conter 10 caracteres")
         return
     if method_combo_box.currentText() == "Corte Simples":
-        band = simple_cut_crossover(1)
+        simple_cut_crossover(1)
         filhao1_label_3.setText("")
         filhao2_label_3.setText("")
     elif method_combo_box.currentText() == "Corte Duplo":
-        band = simple_cut_crossover(2)
+        simple_cut_crossover(2)
     elif method_combo_box.currentText() == "PMX":
         if len(daddy_line_edit.text()) != len(set(daddy_line_edit.text())) \
                 or len(mammy_line_edit.text()) != len(set(mammy_line_edit.text())):
             QMessageBox.warning(QMessageBox(), "AVISO", "Entrada deve conter valores unicos")
             return
-        band = pmx_crossover()
+        pmx_crossover()
 def on_method_combobox_current_text_changed():
     if method_combo_box.currentText() == "PMX":
         daddy_line_edit.setInputMask("AAAAAAAAAA")
@@ -113,6 +112,7 @@ def pmx_crossover():
         filhao_2[i] = tchegarotos[0]
         filhao_2_muda_2 = tchegarotos[1]
         filhao_2_muda_1 = tchegarotos[2]
+    print(filhao_1)
     filhao1_label_1.setText(filhao_1[0])
     filhao1_label_2.setText(filhao_1[1])
     filhao1_label_3.setText(filhao_1[2])
@@ -158,7 +158,7 @@ def simple_cut_crossover(cuts):
 if __name__ == "__main__":
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
     app = QApplication(sys.argv)
-    window = uic.loadUi(f"7_crossover_operation\crossover_operation.ui")
+    window = uic.loadUi(r"7_crossover_operation\crossover_operation.ui")
     window.show()
     daddy_line_edit = window.findChild(QLineEdit, 'daddyLineEdit')
     mammy_line_edit = window.findChild(QLineEdit, 'mammyLineEdit')
