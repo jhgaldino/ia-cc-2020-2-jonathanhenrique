@@ -90,7 +90,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="fatherLineEdit">
+          <widget class="QLineEdit" name="daddyLineEdit">
            <property name="inputMask">
             <string>BBBBBBBBBB</string>
            </property>
@@ -182,7 +182,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="motherLineEdit">
+          <widget class="QLineEdit" name="mammyLineEdit">
            <property name="inputMask">
             <string>BBBBBBBBBB</string>
            </property>

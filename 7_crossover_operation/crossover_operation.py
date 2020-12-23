@@ -4,37 +4,37 @@ from PyQt5.QtCore import QFile
 from PyQt5.QtWidgets import QApplication, QComboBox,QPushButton, QLineEdit, QLabel, QMessageBox
 
 def a(str_n, b, ha):
-    str_list = list(str_n)
+    e_l = list(str_n)
     d = list(b)
-    changes_list = list(ha)
+    l_m = list(ha)
     n = 0
-    for i in range(len(str_list)):
+    for i in range(len(e_l)):
         for j in range(len(d)):
-            if n > (len(d) - 1) or i > (len(str_list)-1) or j > (len(d)-1) : continue
-            elif (str_list[i] == d[j]):
-                str_list[i] = changes_list[n]
+            if n > (len(d) - 1) or i > (len(e_l)-1) or j > (len(d)-1) : continue
+            elif (e_l[i] == d[j]):
+                e_l[i] = l_m[n]
                 del (d[j])
-                del (changes_list[n])
+                del (l_m[n])
                 n += 1
-    str_n = "".join(str_list)
+    str_n = "".join(e_l)
     b = "".join(d)
-    ha = "".join(changes_list)
+    ha = "".join(l_m)
     return str_n, b, ha
 def compare_changes(str_n, b):
-    str_list = list(str_n)
+    e_l = list(str_n)
     d = list(b)
     n = 0
-    for i in range(len(str_list)):
+    for i in range(len(e_l)):
         for j in range(len(d)):
-            if n > (len(d) - 1) or i > (len(str_list)-1) or j > (len(d)-1) : continue
-            elif (str_list[i] == d[j]):
+            if n > (len(d) - 1) or i > (len(e_l)-1) or j > (len(d)-1) : continue
+            elif (e_l[i] == d[j]):
                 del (d[j])
-                del (str_list[i])
-    str_n = "".join(str_list)
+                del (e_l[i])
+    str_n = "".join(e_l)
     b = "".join(d)
     return str_n, b
 def on_cross_pushbutton_clicked():
-    if len(father_line_edit.text()) != 10 or len(father_line_edit.text()) != 10:
+    if len(daddy_line_edit.text()) != 10 or len(daddy_line_edit.text()) != 10:
         QMessageBox.warning(QMessageBox(), "AVISO", "Entrada deve conter 10 caracteres")
         return
     if method_combo_box.currentText() == "Corte Simples":
@@ -44,27 +44,27 @@ def on_cross_pushbutton_clicked():
     elif method_combo_box.currentText() == "Corte Duplo":
         band = simple_cut_crossover(2)
     elif method_combo_box.currentText() == "PMX":
-        if len(father_line_edit.text()) != len(set(father_line_edit.text())) \
-                or len(mother_line_edit.text()) != len(set(mother_line_edit.text())):
+        if len(daddy_line_edit.text()) != len(set(daddy_line_edit.text())) \
+                or len(mammy_line_edit.text()) != len(set(mammy_line_edit.text())):
             QMessageBox.warning(QMessageBox(), "AVISO", "Entrada deve conter valores unicos")
             return
         band = pmx_crossover()
 def on_method_combobox_current_text_changed():
     if method_combo_box.currentText() == "PMX":
-        father_line_edit.setInputMask("AAAAAAAAAA")
-        mother_line_edit.setInputMask("AAAAAAAAAA")
-        father_line_edit.setText("ABCDEFGHIJ")
-        mother_line_edit.setText("KLMNOPQRST")
+        daddy_line_edit.setInputMask("AAAAAAAAAA")
+        mammy_line_edit.setInputMask("AAAAAAAAAA")
+        daddy_line_edit.setText("ABCDEFGHIJ")
+        mammy_line_edit.setText("KLMNOPQRST")
     else:
-        father_line_edit.setInputMask("BBBBBBBBBB")
-        mother_line_edit.setInputMask("BBBBBBBBBB")
-        father_line_edit.setText("0000000000")
-        mother_line_edit.setText("1111111111")
+        daddy_line_edit.setInputMask("BBBBBBBBBB")
+        mammy_line_edit.setInputMask("BBBBBBBBBB")
+        daddy_line_edit.setText("0000000000")
+        mammy_line_edit.setText("1111111111")
 def pmx_crossover():
     cuts = 2
     trades = 1
-    papa = father_line_edit.text()
-    mama = mother_line_edit.text()
+    papa = daddy_line_edit.text()
+    mama = mammy_line_edit.text()
     parts = random.sample(range(1, len(papa)), cuts)
     parts.sort()
     choose = random.sample(range(0, len(parts)+1), trades)
@@ -87,32 +87,32 @@ def pmx_crossover():
         else:
             filhao_2[i] = mama[parts[i - 1]:parts[i]]
     filhao_x = filhao_1.copy()
-    son_1_changes_1 = ""
-    son_1_changes_2 = ""
+    filhao_1_muda_1 = ""
+    filhao_1_muda_2 = ""
     for i in range(len(choose)):
         filhao_1[choose[i]] = filhao_2[choose[i]]
-        son_1_changes_2 += filhao_2[choose[i]]
+        filhao_1_muda_2 += filhao_2[choose[i]]
         filhao_2[choose[i]] = filhao_x[choose[i]]
-        son_1_changes_1 += filhao_x[choose[i]]
-    boys = compare_changes(son_1_changes_1, son_1_changes_2)
-    son_1_changes_1 = boys[0]
-    son_1_changes_2 = boys[1]
-    son_2_changes_1 = son_1_changes_2
-    son_2_changes_2 = son_1_changes_1
+        filhao_1_muda_1 += filhao_x[choose[i]]
+    tchegarotos = compare_changes(filhao_1_muda_1, filhao_1_muda_2)
+    filhao_1_muda_1 = tchegarotos[0]
+    filhao_1_muda_2 = tchegarotos[1]
+    filhao_2_muda_1 = filhao_1_muda_2
+    filhao_2_muda_2 = filhao_1_muda_1
     for i in range(len(filhao_1)):
         if i == choose[0]:
             continue
-        boys = a(filhao_1[i], son_1_changes_2, son_1_changes_1)
-        filhao_1[i] = boys[0]
-        son_1_changes_2 = boys[1]
-        son_1_changes_1 = boys[2]
+        tchegarotos = a(filhao_1[i], filhao_1_muda_2, filhao_1_muda_1)
+        filhao_1[i] = [0]
+        filhao_1_muda_2 = tchegarotos[1]
+        filhao_1_muda_1 = tchegarotos[2]
     for i in range(len(filhao_2)):
         if i == choose[0]:
             continue
-        boys = a(filhao_2[i], son_2_changes_2, son_2_changes_1)
-        filhao_2[i] = boys[0]
-        son_2_changes_2 = boys[1]
-        son_2_changes_1 = boys[2]
+        tchegarotos = a(filhao_2[i], filhao_2_muda_2, filhao_2_muda_1)
+        filhao_2[i] = tchegarotos[0]
+        filhao_2_muda_2 = tchegarotos[1]
+        filhao_2_muda_1 = tchegarotos[2]
     filhao1_label_1.setText(filhao_1[0])
     filhao1_label_2.setText(filhao_1[1])
     filhao1_label_3.setText(filhao_1[2])
@@ -121,8 +121,8 @@ def pmx_crossover():
     filhao2_label_3.setText(filhao_2[2])
 def simple_cut_crossover(cuts):
     trades = 1
-    papa = father_line_edit.text()
-    mama = mother_line_edit.text()
+    papa = daddy_line_edit.text()
+    mama = mammy_line_edit.text()
     parts = random.sample(range(1, len(papa)), cuts)
     parts.sort()
     choose = random.sample(range(0, len(parts)+1), trades)
@@ -160,8 +160,8 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = uic.loadUi(f"7_crossover_operation\crossover_operation.ui")
     window.show()
-    father_line_edit = window.findChild(QLineEdit, 'fatherLineEdit')
-    mother_line_edit = window.findChild(QLineEdit, 'motherLineEdit')
+    daddy_line_edit = window.findChild(QLineEdit, 'daddyLineEdit')
+    mammy_line_edit = window.findChild(QLineEdit, 'mammyLineEdit')
     filhao1_label_1 = window.findChild(QLabel, 'filhao1Label1')
     filhao1_label_2 = window.findChild(QLabel, 'filhao1Label2')
     filhao1_label_3 = window.findChild(QLabel, 'filhao1Label3')
