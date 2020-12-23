@@ -2,6 +2,7 @@ class Hebb:
 
 def __init__(self):
         pass
+
 def __init__(self, values_):
         self.train = values_
 def step_zero(self):

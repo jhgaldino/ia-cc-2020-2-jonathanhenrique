@@ -5,6 +5,8 @@ from hebb import Hebb
 from perceptron import Perceptron
 from neuron import Neuron
 n = Neuron()
+
+#Jonathan Henrique
 def hebb_split(txt):
     split_1 = txt.split("\n")
     split_2 = []
