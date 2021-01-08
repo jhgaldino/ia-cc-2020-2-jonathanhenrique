@@ -1,7 +1,7 @@
 import sys, random
 from PyQt5 import QtCore,uic
 from PyQt5.QtWidgets import QApplication, QComboBox,QPushButton, QLineEdit, QLabel, QMessageBox
-
+#final
 def a(str_n, b, ha):
     e_l = list(str_n)
     d = list(b)
